@@ -69,19 +69,6 @@ namespace Price_Calculator
             totalPrice.amount = basePrice.amount + taxAmount.amount - totalDiscount.amount + packaging.amount + transport.amount;
             PrintDetailsWithDiscount(taxAmount, packaging, transport, totalPrice);
         }
-        public void CalculateTotalPrice_MultiplicativeDis()
-        {
-            double uDiscountAmount = ApplyUniversalDiscount();
-            double remain = basePrice.amount - uDiscountAmount;
-            double sDiscountAmount = ApplySpecialDiscount(remain);
-            Money taxAmount = ApplyTax();
-            Money transport = ApplyTransport();
-            Money packaging = ApplyPackaging();
-            totalDiscount.amount= sDiscountAmount + uDiscountAmount;
-            Money totalPrice = new Money(0, basePrice.currency);
-            totalPrice.amount= basePrice.amount+ taxAmount.amount - totalDiscount.amount + packaging.amount + transport.amount;
-            PrintDetailsWithDiscount(taxAmount,packaging,transport,totalPrice);
-        }
         public Money ApplyTax()
         {
             double taxAmount = basePrice.amount * flatRateTax;
